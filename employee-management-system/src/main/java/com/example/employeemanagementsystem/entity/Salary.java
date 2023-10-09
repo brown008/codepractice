@@ -7,21 +7,20 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+
 @Data
+@Entity
 @NoArgsConstructor
-public class User {
+public class Salary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer employee_id;
-    private String username;
-    private String password;
-
-    public User(String username, String password, Integer employee_id) {
-        this.username = username;
-        this.password = password;
-        this.employee_id = employee_id;
-    }
+    private BigDecimal salary;
+    private BigDecimal downLine_bonus;
+    private BigDecimal others;
+    private Timestamp effective_date;
 
 }

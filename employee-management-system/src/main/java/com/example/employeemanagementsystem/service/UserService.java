@@ -1,5 +1,7 @@
 package com.example.employeemanagementsystem.service;
 
+import com.example.employeemanagementsystem.util.LoginResponse;
+
 public interface UserService {
 
     /**
@@ -15,5 +17,5 @@ public interface UserService {
      * @param password
      * @return
      */
-    boolean authenticateUser(String username, String password);
+    LoginResponse authenticateUser(String username, String password);
 }

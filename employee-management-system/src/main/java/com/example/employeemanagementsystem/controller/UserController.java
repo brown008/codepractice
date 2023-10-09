@@ -1,16 +1,19 @@
 package com.example.employeemanagementsystem.controller;
 
+import com.example.employeemanagementsystem.entity.User;
+import com.example.employeemanagementsystem.service.UserInfoService;
 import com.example.employeemanagementsystem.service.UserService;
 import com.example.employeemanagementsystem.util.LoginResponse;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 处理用户注册和登录请求
  */
 @RestController
-@RequestMapping("/server")
+@RequestMapping("/user")
 public class UserController {
     @Resource
     private UserService userService;
@@ -29,10 +32,7 @@ public class UserController {
 
     @GetMapping("/login")
     public LoginResponse login(@RequestParam String username, @RequestParam String password) {
-        boolean isSuccess = userService.authenticateUser(username, password);
-        LoginResponse loginResponse = new LoginResponse();
-        loginResponse.setLoginResult(isSuccess);
-        loginResponse.setMessage(isSuccess ? "Login successful !":"Login failed !");
+        LoginResponse loginResponse = userService.authenticateUser(username, password);
         return loginResponse;
     }
 }

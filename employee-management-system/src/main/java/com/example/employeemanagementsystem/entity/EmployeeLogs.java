@@ -6,22 +6,16 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.sql.Timestamp;
 
-@Entity
 @Data
+@Entity
 @NoArgsConstructor
-public class User {
+public class EmployeeLogs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer employee_id;
-    private String username;
-    private String password;
-
-    public User(String username, String password, Integer employee_id) {
-        this.username = username;
-        this.password = password;
-        this.employee_id = employee_id;
-    }
-
+    private String project_description;
+    private Timestamp project_date;
 }

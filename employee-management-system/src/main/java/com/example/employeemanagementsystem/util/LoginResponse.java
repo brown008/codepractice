@@ -6,5 +6,6 @@ import lombok.Data;
 public class LoginResponse {
     private boolean loginResult;
     private String message;
-//    private String id;
+    private Integer Userid;
+    private Integer employee_id;
 }
