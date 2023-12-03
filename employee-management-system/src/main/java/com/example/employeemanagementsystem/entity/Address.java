@@ -10,19 +10,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class User {
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer employee_id;
-    private String username;
-    private String password;
-    private String role;
-
-    public User(String username, String password, Integer employee_id) {
-        this.username = username;
-        this.password = password;
-        this.employee_id = employee_id;
-    }
-
+    private String country;
+    private String city;
+    private String address;
+    private String postalCode;
 }

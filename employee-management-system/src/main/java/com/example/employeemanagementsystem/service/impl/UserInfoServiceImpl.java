@@ -1,15 +1,9 @@
 package com.example.employeemanagementsystem.service.impl;
 
-import com.example.employeemanagementsystem.dao.EmployeeLogsRepository;
-import com.example.employeemanagementsystem.dao.EmployeeRepository;
-import com.example.employeemanagementsystem.dao.SalaryRepository;
-import com.example.employeemanagementsystem.dao.UserRepository;
+import com.example.employeemanagementsystem.dao.*;
 import com.example.employeemanagementsystem.dto.InfoAllBean;
 import com.example.employeemanagementsystem.dto.InfoBean;
-import com.example.employeemanagementsystem.entity.EmployeeLogs;
-import com.example.employeemanagementsystem.entity.Employees;
-import com.example.employeemanagementsystem.entity.Salary;
-import com.example.employeemanagementsystem.entity.User;
+import com.example.employeemanagementsystem.entity.*;
 import com.example.employeemanagementsystem.formbean.Information;
 import com.example.employeemanagementsystem.service.UserInfoService;
 import jakarta.annotation.Resource;
@@ -32,30 +26,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Resource
     private SalaryRepository salaryRepository;
 
+    @Resource
+    private AddressRepository addressRepository;
+
     //用户信息的更新
     @Override
     public Boolean saveUserInfo(InfoBean information) {
-//        User user = new User();
-//        Employees employee = new Employees();
-//        EmployeeLogs employeeLogs = new EmployeeLogs();
-//        user.setId(information.getUser().getId());
-//        user.setEmployee_id(information.getUser().getEmployee_id());
-//        user.setUsername(information.getUser().getUsername());
-//        user.setPassword(information.getUser().getPassword());
-//        employee.setEmployee_id(information.getEmployee().getEmployee_id());
-//        employee.setFirst_name(information.getEmployee().getFirst_name());
-//        employee.setLast_name(information.getEmployee().getLast_name());
-//        employee.setEmail(information.getEmployee().getEmail());
-//        employee.setHire_date(information.getEmployee().getHire_date());
-//        employee.setStatus(information.getEmployee().getStatus());
-//        employee.setDepartment_id(information.getEmployee().getDepartment_id());
-//        employee.setRecommender_id(information.getEmployee().getRecommender_id());
-//        employeeLogs.setEmployee_id(information.getEmployee().getEmployee_id());
-//        employeeLogs.setProject_description(information.getEmployeeLogsList().get(0).getProject_description());
-//        employeeLogs.setProject_date(information.getEmployeeLogsList().get(0).getProject_date());
-//        employeeRepository.save(employee);
-//        employeeLogsRepository.save(employeeLogs);
-//        userRepository.save(user);
         try {
             employeeRepository.save(information.getEmployee());
             employeeLogsRepository.save(information.getEmployeeLogsList().get(0));
@@ -87,12 +63,16 @@ public class UserInfoServiceImpl implements UserInfoService {
         List<EmployeeLogs> employeeLogs = employeeLogsRepository.findByEmployeeId(employeeId);
 
         //salary表
-        Salary salary = salaryRepository.findByEmployeeId(employeeId);
+//        Salary salary = salaryRepository.findByEmployeeId(employeeId);
+        Salary salary = salaryRepository.findByEmployee_id(employeeId);
+        //address表
+        Address address = addressRepository.findByEmployee_id(employeeId);
 
         info.setUser(user);
         info.setEmployee(employee);
         info.setEmployeeLogsList(employeeLogs);
         info.setSalary(salary);
+        info.setAddress(address);
         return info;
     }
 

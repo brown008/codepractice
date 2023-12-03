@@ -8,5 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface SalaryRepository extends JpaRepository<Salary, Integer> {
 
     @Query("SELECT s FROM Salary s WHERE s.employee_id = :employeeId")
-    Salary findByEmployeeId(@Param("employeeId") Integer employeeId);
+    Salary findByEmployee_id(@Param("employeeId") Integer employeeId);
+
+//    Salary findByEmployee_id(Integer employeeId);
 }

@@ -18,6 +18,8 @@ public class Employees {
     private String first_name;
     private String last_name;
     private String email;
+    private Integer gender;
+    private Timestamp birthdate;
     private Timestamp hire_date;
     private Timestamp resign_date;
     private String status;

@@ -45,7 +45,8 @@ public class SalaryServiceImpl implements SalaryService {
     public SalaryBean getSalaryInfo(Integer employeeId) {
         SalaryBean salaryBean = new SalaryBean();
         //salary表
-        Salary salary = salaryRepository.findByEmployeeId(employeeId);
+//        Salary salary = salaryRepository.findByEmployeeId(employeeId);
+        Salary salary = salaryRepository.findByEmployee_id(employeeId);
         salaryBean.setSalary(salary);
 
         //employee表,获取推荐人信息

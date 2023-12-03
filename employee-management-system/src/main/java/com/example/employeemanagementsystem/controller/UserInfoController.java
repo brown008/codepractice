@@ -31,8 +31,8 @@ public class UserInfoController {
      * @return
      */
     @GetMapping("/getInfo")
-    public InfoBean getInfo(@RequestParam Integer userId, @RequestParam Integer employeeId){
-        InfoBean info = userInfoService.getUserInfo(userId, employeeId);
+    public InfoBean getInfo(@RequestParam String userId, @RequestParam String employeeId){
+        InfoBean info = userInfoService.getUserInfo(Integer.valueOf(userId), Integer.valueOf(employeeId));
         return info;
     }
 

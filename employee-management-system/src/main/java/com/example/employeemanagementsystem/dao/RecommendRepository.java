@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface RecommendRepository extends JpaRepository<Recommend, Integer> {
 
-    @Query("SELECT r FROM Recommend r WHERE r.recommender = :employeeId")
+    @Query("SELECT r FROM Recommend r WHERE r.employee_id = :employeeId")
     List<Recommend> findByEmployeeId(@Param("employeeId") Integer employeeId);
 }

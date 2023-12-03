@@ -1,9 +1,6 @@
 package com.example.employeemanagementsystem.dto;
 
-import com.example.employeemanagementsystem.entity.EmployeeLogs;
-import com.example.employeemanagementsystem.entity.Employees;
-import com.example.employeemanagementsystem.entity.Salary;
-import com.example.employeemanagementsystem.entity.User;
+import com.example.employeemanagementsystem.entity.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,5 +12,6 @@ public class InfoBean {
     private User user;
     private Employees employee;
     private Salary salary;
+    private Address address;
     private List<EmployeeLogs> employeeLogsList;
 }
