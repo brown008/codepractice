@@ -8,12 +8,22 @@ import user from "./user";
 import login from "./login";
 import userProfile from "./userProfile";
 import allEmployees from "./allEmployees";
+import newEmployee from "./newEmployee";
+import newContract from "./newContract";
+import allRevenue from "./allRevenue";
+import allContracts from "./allContracts";
+import expense from "./expense";
 export default new Vuex.Store({
     modules:{
         infoBean, 
         user, 
         login, 
         userProfile,
-        allEmployees
+        allEmployees,
+        allContracts,
+        allRevenue,
+        newEmployee,
+        newContract,
+        expense
     }
 })

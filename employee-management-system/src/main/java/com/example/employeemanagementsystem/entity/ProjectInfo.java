@@ -7,20 +7,20 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 
-@Data
 @Entity
+@Data
 @NoArgsConstructor
-public class Salary {
+public class ProjectInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer employee_id;
-    private BigDecimal salary;
-    private BigDecimal downLine_bonus;
-    private BigDecimal others;
-    private Date effective_date;
-
+    private String projectName;
+    private String customer;
+    private Integer contractAmount;
+    private Date startDate;
+    private Date endDate;
+    private String introduction;
 }

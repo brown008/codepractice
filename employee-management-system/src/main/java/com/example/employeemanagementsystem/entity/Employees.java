@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Data
@@ -18,11 +20,11 @@ public class Employees {
     private String first_name;
     private String last_name;
     private String email;
-    private Integer gender;
-    private Timestamp birthdate;
-    private Timestamp hire_date;
-    private Timestamp resign_date;
+    private String gender;
+    private Date birthdate;
+    private Date hire_date;
+    private Date resign_date;
     private String status;
-    private Integer department_id;
+    private String department_id;
 
 }

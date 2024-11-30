@@ -7,6 +7,7 @@ import com.example.employeemanagementsystem.entity.*;
 import com.example.employeemanagementsystem.formbean.Information;
 import com.example.employeemanagementsystem.service.UserInfoService;
 import jakarta.annotation.Resource;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,12 +30,12 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Resource
     private AddressRepository addressRepository;
 
-    //用户信息的更新
+    //用户信息的保存
     @Override
     public Boolean saveUserInfo(InfoBean information) {
         try {
             employeeRepository.save(information.getEmployee());
-            employeeLogsRepository.save(information.getEmployeeLogsList().get(0));
+            employeeLogsRepository.save(information.getEmployeeLogs());
             userRepository.save(information.getUser());
             return true;
         } catch (Exception e) {
@@ -42,6 +43,40 @@ public class UserInfoServiceImpl implements UserInfoService {
             return false;
         }
     }
+
+    /**
+     * 用户信息的更新
+     * 针对 User Profile页面的更新
+     * 更新内容：用户信息，员工信息，地址信息，薪资信息
+     * @param infoBean
+     * @return
+     */
+    @Override
+    public Boolean updateUserInfo(InfoBean infoBean) {
+        Boolean updateResult = false;
+        try {
+            //用户信息
+            userRepository.findById(infoBean.getUser().getId()).orElseThrow(() -> new EntityNotFoundException("用户不存在"));
+            userRepository.save(infoBean.getUser());
+            //员工信息
+            employeeRepository.findById(infoBean.getEmployee().getEmployee_id()).orElseThrow(() -> new EntityNotFoundException("员工不存在"));
+            employeeRepository.save(infoBean.getEmployee());
+            //地址信息
+            addressRepository.findById(infoBean.getAddress().getId()).orElseThrow(() -> new EntityNotFoundException("员工地址不存在"));
+            addressRepository.save(infoBean.getAddress());
+            //薪资信息
+            salaryRepository.findById(infoBean.getSalary().getId()).orElseThrow(() -> new EntityNotFoundException("薪资信息不存在"));
+            salaryRepository.save(infoBean.getSalary());
+            //工作日志信息
+            employeeLogsRepository.findByEmployeeId(infoBean.getEmployeeLogs().getEmployee_id());
+            employeeLogsRepository.save(infoBean.getEmployeeLogs());
+            updateResult = true;
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return updateResult;
+    }
+
 
     //用户信息的获取
     @Override
@@ -60,7 +95,7 @@ public class UserInfoServiceImpl implements UserInfoService {
             employee = optionalEmployee.get();
         }
         //employee_log表
-        List<EmployeeLogs> employeeLogs = employeeLogsRepository.findByEmployeeId(employeeId);
+        EmployeeLogs employeeLogs = employeeLogsRepository.findByEmployeeId(employeeId);
 
         //salary表
 //        Salary salary = salaryRepository.findByEmployeeId(employeeId);
@@ -70,7 +105,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         info.setUser(user);
         info.setEmployee(employee);
-        info.setEmployeeLogsList(employeeLogs);
+        info.setEmployeeLogs(employeeLogs);
         info.setSalary(salary);
         info.setAddress(address);
         return info;

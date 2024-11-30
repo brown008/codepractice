@@ -1,11 +1,11 @@
 package com.example.employeemanagementsystem.service.impl;
 
 import com.example.employeemanagementsystem.dao.EmployeeRepository;
-import com.example.employeemanagementsystem.dao.RecommendRepository;
+import com.example.employeemanagementsystem.dao.DownLineRepository;
 import com.example.employeemanagementsystem.dao.SalaryRepository;
 import com.example.employeemanagementsystem.dto.SalaryBean;
 import com.example.employeemanagementsystem.entity.Employees;
-import com.example.employeemanagementsystem.entity.Recommend;
+import com.example.employeemanagementsystem.entity.DownLine;
 import com.example.employeemanagementsystem.entity.Salary;
 import com.example.employeemanagementsystem.service.SalaryService;
 import jakarta.annotation.Resource;
@@ -25,7 +25,7 @@ public class SalaryServiceImpl implements SalaryService {
     private EmployeeRepository employeeRepository;
 
     @Resource
-    private RecommendRepository recommendRepository;
+    private DownLineRepository downLineRepository;
 
 
     @Override
@@ -33,7 +33,7 @@ public class SalaryServiceImpl implements SalaryService {
         try {
             employeeRepository.save(salaryBean.getEmployees());
             salaryRepository.save(salaryBean.getSalary());
-            recommendRepository.save(salaryBean.getRecommend());
+            downLineRepository.save(salaryBean.getDownLine());
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,22 +53,22 @@ public class SalaryServiceImpl implements SalaryService {
         Optional<Employees> optionalEmployee = employeeRepository.findById(employeeId);
         salaryBean.setEmployees(optionalEmployee.get());
 
-        //recommend表（推荐情况表）
-        List<Recommend> recommendList = recommendRepository.findByEmployeeId(employeeId);
+        //downLine表（下线情况表）
+        List<DownLine> downLineList = downLineRepository.findByEmployeeId(employeeId);
 
         //获取下线的员工信息
-        List<Employees> downLineList = new ArrayList<>();
-        for (int i=0; i<recommendList.size(); i++) {
-            //获取推荐人信息
-            if (recommendList.get(i).getRecommender() != null){
-                salaryBean.getRecommend().setRecommender(recommendList.get(i).getRecommender());
-            }
-            Optional<Employees> employee = employeeRepository.findById(recommendList.get(i).getDownLine());
-            if (employee.isPresent()){
-                downLineList.add(employee.get());
+        List<Employees> newDownLineList = new ArrayList<>();
+        for (int i=0; i<downLineList.size(); i++) {
+            //获取下线信息
+            if (downLineList.get(i).getDownLine() != null){
+//                salaryBean.getDownLine().setDownLine(downLineList.get(i).getDownLine());
+                Optional<Employees> employee = employeeRepository.findById(downLineList.get(i).getDownLine());
+                if (employee.isPresent()){
+                    newDownLineList.add(employee.get());
+                }
             }
         }
-        salaryBean.setEmployeesList(downLineList);
+        salaryBean.setEmployeesList(newDownLineList);
 
         return salaryBean;
     }

@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface AddressRepository extends JpaRepository<User, Integer> {
+public interface AddressRepository extends JpaRepository<Address, Integer> {
 
     @Query("SELECT a FROM Address a WHERE a.employee_id = :employeeId")
     Address findByEmployee_id(@Param("employeeId")Integer employeeId);

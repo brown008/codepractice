@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class RegisterResponse {
-    private boolean registerResult;
+    private boolean result;
     private String message;
 }

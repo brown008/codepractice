@@ -13,5 +13,5 @@ public class InfoBean {
     private Employees employee;
     private Salary salary;
     private Address address;
-    private List<EmployeeLogs> employeeLogsList;
+    private EmployeeLogs employeeLogs;
 }

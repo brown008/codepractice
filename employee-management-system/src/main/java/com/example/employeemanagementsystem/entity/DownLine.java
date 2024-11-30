@@ -7,20 +7,20 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 @Data
 @Entity
 @NoArgsConstructor
-public class Recommend {
+public class DownLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer employee_id;
-    private Integer recommender;
+//    private Integer recommender;
     private Integer downLine;
-    private Timestamp effective_date;
-    private Timestamp invalid_date;
+    private Date effective_date;
+    private Date invalid_date;
 
 
 }

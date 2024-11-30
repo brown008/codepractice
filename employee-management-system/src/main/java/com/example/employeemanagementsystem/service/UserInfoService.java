@@ -5,6 +5,7 @@ import com.example.employeemanagementsystem.dto.InfoBean;
 
 public interface UserInfoService {
     Boolean saveUserInfo(InfoBean information);
+    Boolean updateUserInfo(InfoBean infoBean);
     InfoBean getUserInfo(Integer userId, Integer employeeId);
     InfoAllBean getAllUsersInfo();
 }

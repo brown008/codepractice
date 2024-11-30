@@ -11,5 +11,7 @@ public class Const {
     public static final String WORKING = "1";//工作
     public static final String WAITING = "2";//待机
     public static final String RESIGN = "3";//离职
+    //默认密码
+    public static final String DEFAULT_PASSWORD = "123456";
 
 }

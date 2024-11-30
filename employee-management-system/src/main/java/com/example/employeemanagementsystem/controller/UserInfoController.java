@@ -25,6 +25,18 @@ public class UserInfoController {
     }
 
     /**
+     * 更新用户信息
+     * @param information
+     * @return
+     */
+    @PostMapping("/updateInfo")
+    public Boolean updateInfo(@RequestBody InfoBean information){
+        System.out.println(information);
+        Boolean isSuccess = userInfoService.updateUserInfo(information);
+        return isSuccess;
+    }
+
+    /**
      * 获取用户个人信息
      * @param userId
      * @param employeeId

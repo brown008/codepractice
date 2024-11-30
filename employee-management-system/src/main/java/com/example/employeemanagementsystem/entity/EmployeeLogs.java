@@ -6,7 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.sql.Timestamp;
+
+import java.sql.Date;
 
 @Data
 @Entity
@@ -17,5 +18,5 @@ public class EmployeeLogs {
     private Integer id;
     private Integer employee_id;
     private String project_description;
-    private Timestamp project_date;
+//    private Date project_date;
 }

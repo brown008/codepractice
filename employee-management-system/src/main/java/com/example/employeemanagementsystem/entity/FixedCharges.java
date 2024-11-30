@@ -13,14 +13,16 @@ import java.sql.Date;
 @Data
 @Entity
 @NoArgsConstructor
-public class Salary {
+public class FixedCharges {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer employee_id;
-    private BigDecimal salary;
-    private BigDecimal downLine_bonus;
-    private BigDecimal others;
-    private Date effective_date;
-
+    private Date start_date;
+    private Date end_date;
+    private BigDecimal water;
+    private BigDecimal electricity;
+    private BigDecimal gas;
+    private BigDecimal rent;
+    private BigDecimal internet;
+    private BigDecimal mobile;
 }

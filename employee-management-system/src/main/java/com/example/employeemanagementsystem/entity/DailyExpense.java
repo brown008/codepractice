@@ -13,14 +13,12 @@ import java.sql.Date;
 @Data
 @Entity
 @NoArgsConstructor
-public class Salary {
+public class DailyExpense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer employee_id;
-    private BigDecimal salary;
-    private BigDecimal downLine_bonus;
-    private BigDecimal others;
-    private Date effective_date;
-
+    private Date start_date;
+    private Date end_date;
+    private BigDecimal basic_living;
+    private BigDecimal online_shopping;
 }
